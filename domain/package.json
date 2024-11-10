@@ -1,0 +1,24 @@
+{
+  "name": "spread-the-song-domain",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "test": "vitest"
+  },
+  "author": "Kiko Ruiz <hola@kikoruiz.es> (https://www.kikoruiz.es/)",
+  "license": "ISC",
+  "description": "Get a song URL from any music cloud service ready to be shared everywhere.",
+  "dependencies": {
+    "change-case": "5",
+    "googleapis": "144",
+    "jose": "5",
+    "musicmatch": "0",
+    "spotify-web-api-node": "5",
+    "youtube-music-api": "1"
+  },
+  "devDependencies": {
+    "@anatine/zod-mock": "3",
+    "@faker-js/faker": "8",
+    "@types/spotify-web-api-node": "5"
+  }
+}

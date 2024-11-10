@@ -1,0 +1,47 @@
+{
+  "name": "spread-the-song",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbopack",
+    "lint": "next lint",
+    "test": "vitest",
+    "start": "next start",
+    "type-check": "tsc --noEmit"
+  },
+  "workspaces": [
+    "domain"
+  ],
+  "dependencies": {
+    "@cacheable/node-cache": "1",
+    "@radix-ui/react-form": "0",
+    "@radix-ui/react-icons": "1",
+    "class-variance-authority": "0",
+    "next": "15",
+    "next-intl": "3",
+    "react": "19.0.0-rc-02c0e824-20241028",
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
+    "zod": "3"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "8",
+    "@testing-library/dom": "10",
+    "@testing-library/react": "16",
+    "@types/node": "20",
+    "@types/react": "18",
+    "@types/react-dom": "18",
+    "@vitejs/plugin-react": "4",
+    "eslint": "8",
+    "eslint-config-next": "15",
+    "eslint-config-prettier": "9",
+    "eslint-plugin-prettier": "5",
+    "jsdom": "25",
+    "postcss": "8",
+    "prettier": "3",
+    "tailwindcss": "3",
+    "typescript": "5",
+    "vitest": "2"
+  }
+}

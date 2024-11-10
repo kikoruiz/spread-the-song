@@ -1,0 +1,21 @@
+{
+  "search": {
+    "fields": {
+      "name": {
+        "label": "Song",
+        "messages": {
+          "error": "Song must be defined",
+          "error-min": "Song must have more characters"
+        }
+      },
+      "artist": {
+        "label": "Artist",
+        "messages": {
+          "error": "Artist must be defined",
+          "error-min": "Artist must have more characters"
+        }
+      }
+    },
+    "submit": "Search"
+  }
+}
