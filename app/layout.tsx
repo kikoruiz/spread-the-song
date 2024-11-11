@@ -2,7 +2,6 @@ import type {Metadata} from 'next'
 import {NextIntlClientProvider} from 'next-intl'
 import {getLocale, getMessages} from 'next-intl/server'
 import {Figtree} from 'next/font/google'
-// import localFont from 'next/font/local'
 import Logo from '@/assets/brand/logo-full.svg'
 
 import './globals.css'
@@ -11,22 +10,6 @@ const font = Figtree({
   subsets: ['latin'],
   display: 'swap'
 })
-
-// const postino = localFont({
-//   variable: '--font-postino',
-//   src: [
-//     {
-//       path: './fonts/Postino-Std.otf',
-//       weight: '400',
-//       style: 'normal'
-//     },
-//     {
-//       path: './fonts/Postino-Std-Italic.otf',
-//       weight: '400',
-//       style: 'italic'
-//     }
-//   ]
-// })
 
 export const metadata: Metadata = {
   title: 'Spread the Song',
