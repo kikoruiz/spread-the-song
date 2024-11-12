@@ -8,7 +8,7 @@ import socialLogos from './social-logos'
 import {ExternalLinkIcon} from '@radix-ui/react-icons'
 
 const styles = cva(
-  'group flex basis-full w-full gap-4 p-4 rounded-xl bg-gradient-to-tr drop-shadow-md transition-all hover:ring-4 hover:ring-current hover:drop-shadow-2xl',
+  'group flex basis-full w-full gap-4 p-4 rounded-xl bg-gradient-to-tr drop-shadow-md transition-all duration-300 hover:ring-4 hover:ring-current hover:drop-shadow-2xl',
   {
     variants: {
       intent: {
@@ -47,7 +47,7 @@ export default function SongCard({name, artist, album, service, url}: SongCardPr
             </div>
           </div>
 
-          <Logo className="shrink-0 size-9 fill-white transition-opacity opacity-75 group-hover:opacity-100" />
+          <Logo className="shrink-0 size-9 fill-white transition-opacity duration-300 opacity-75 group-hover:opacity-100" />
         </div>
 
         <Link

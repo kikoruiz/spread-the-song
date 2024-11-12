@@ -1,5 +1,6 @@
 {
   "name": "spread-the-song",
+  "description": "Get a song URL from any music cloud service ready to be shared everywhere.",
   "version": "1.0.0",
   "private": true,
   "type": "module",
