@@ -1,31 +1,32 @@
-import {useState, type FormEvent} from 'react'
+import {useEffect, useRef, useState, type FormEvent} from 'react'
 import {useTranslations} from 'next-intl'
-import {searchSchema, type SearchFieldErrors} from '@/app/lib/schemas'
+import {convertSchema, type ConvertFieldErrors} from '@/app/lib/schemas'
 import {Root, Submit} from '@radix-ui/react-form'
 import {ArrowRightIcon} from '@radix-ui/react-icons'
-import SearchField from './search-field'
-import type {SearchParams} from '@/domain'
+import FormField from './form-field'
+import type {ConvertParams} from '@/domain'
 
-interface SearchProps {
+interface ConvertFormProps {
   action: (payload: FormData) => void
-  errors?: SearchFieldErrors
+  errors?: ConvertFieldErrors
   hasResults: boolean
-  onError: (errors?: SearchFieldErrors) => void
+  onError: (errors?: ConvertFieldErrors) => void
 }
 
-const searchFields = [...searchSchema.keyof().options]
+const convertFields = convertSchema.keyof().options
 
-export default function Search({action, errors, hasResults, onError}: SearchProps) {
-  const t = useTranslations('search')
-  const [params, setParams] = useState({} as SearchParams)
+export default function ConvertForm({action, errors, hasResults, onError}: ConvertFormProps) {
+  const t = useTranslations('convert')
+  const [params, setParams] = useState({} as ConvertParams)
+  const firstInputRef = useRef<HTMLInputElement>(null)
 
   function handleSubmit(event: FormEvent) {
     const formData = new FormData(event.target as HTMLFormElement)
-    const params = searchFields.reduce(
+    const params = (convertFields as string[]).reduce(
       (params, field) => ({...params, [field]: Object.fromEntries(formData)[field]}),
-      {} as SearchParams
+      {} as ConvertParams
     )
-    const {error} = searchSchema.safeParse(params)
+    const {error} = convertSchema.safeParse(params)
 
     setParams(params)
     if (error) {
@@ -36,17 +37,25 @@ export default function Search({action, errors, hasResults, onError}: SearchProp
     }
   }
 
+  useEffect(() => {
+    if (firstInputRef.current) {
+      firstInputRef.current.focus()
+    }
+  }, [])
+
   return (
     <Root action={action} onSubmit={handleSubmit} className="container py-12 max-w-screen-sm flex flex-col gap-3 px-6">
-      {searchFields.map(field => {
+      {convertFields.map((field, index) => {
         const [errorMessage] = errors?.[field] ?? []
 
         return (
-          <SearchField
+          <FormField
             key={field}
+            ref={index === 0 ? firstInputRef : null}
             name={field}
             value={params && !hasResults ? params?.[field] : ''}
-            errorMessage={errorMessage}
+            title={t(`fields.${field}.label`)}
+            errorMessage={errorMessage && t(`fields.${field}.messages.${errorMessage}`)}
           />
         )
       })}

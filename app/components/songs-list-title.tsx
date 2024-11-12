@@ -1,6 +1,6 @@
 import type {SongsList} from '@/domain'
 
-interface SearchTitleProps {
+interface SongsListTitleProps {
   isPending: boolean
   results?: SongsList
 }
@@ -11,7 +11,7 @@ function getResultsTitle(songs: SongsList) {
   return songs.map(({service}) => service.name).join(separator)
 }
 
-export default function SearchTitle({isPending, results}: SearchTitleProps) {
+export default function SongsListTitle({isPending, results}: SongsListTitleProps) {
   const hasResponse = Array.isArray(results)
   const hasResults = hasResponse && results.length > 0
 

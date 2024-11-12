@@ -25,6 +25,15 @@ const nextConfig: NextConfig = {
       }
     }
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/search',
+        permanent: true
+      }
+    ]
+  },
   webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,

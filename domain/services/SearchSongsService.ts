@@ -39,6 +39,6 @@ export default class SearchSongsService extends Service {
       )
     )) as SongsList
 
-    return songs?.filter(Boolean)
+    return songs.filter(Boolean)
   }
 }

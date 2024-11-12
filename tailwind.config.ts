@@ -64,11 +64,33 @@ const config: Config = {
         'youtube-music-primary': 'white',
         'youtube-music-secondary': 'black'
       },
+      animation: {
+        'slide-left-out': '0.3s ease-in forwards slide-left-out',
+        'slide-left-in': '0.3s ease-out slide-left-in',
+        'slide-right-out': '0.3s ease-in forwards slide-right-out',
+        'slide-right-in': '0.3s ease-out slide-right-in'
+      },
       keyframes: {
         shimmer: {
           '100%': {
             transform: 'translateX(100%)'
           }
+        },
+        'slide-left-out': {
+          from: {opacity: '100', transform: 'translateX(0)'},
+          to: {opacity: '0', transform: 'translateX(-15%)'}
+        },
+        'slide-left-in': {
+          from: {opacity: '0', transform: 'translateX(15%)'},
+          to: {opacity: '100', transform: 'translateX(0%)'}
+        },
+        'slide-right-out': {
+          from: {opacity: '100', transform: 'translateX(0)'},
+          to: {opacity: '0', transform: 'translateX(15%)'}
+        },
+        'slide-right-in': {
+          from: {opacity: '0', transform: 'translateX(-15%)'},
+          to: {opacity: '100', transform: 'translateX(0)'}
         }
       }
     }

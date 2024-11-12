@@ -1,8 +1,9 @@
 import type {Metadata} from 'next'
 import {NextIntlClientProvider} from 'next-intl'
 import {getLocale, getMessages} from 'next-intl/server'
+
 import {Figtree} from 'next/font/google'
-import Logo from '@/assets/brand/logo-full.svg'
+import TransitionProvider from './components/transition-provider'
 
 import './globals.css'
 
@@ -29,13 +30,7 @@ export default async function RootLayout({
       <body className={`${font.className} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <div className="flex flex-col items-center min-h-screen">
-            <header className="sticky top-0 z-20 w-full p-12 flex justify-center backdrop-blur bg-transparent">
-              <Logo className="w-60" />
-            </header>
-
-            <main className="w-full mb-auto">{children}</main>
-
-            <footer className="flex justify-center p-12 font-bold">Spread the Song © 2024</footer>
+            <TransitionProvider className="w-full mb-auto">{children}</TransitionProvider>
           </div>
         </NextIntlClientProvider>
       </body>

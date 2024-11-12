@@ -1,21 +1,36 @@
 {
+  "sections": {
+    "search": "Search",
+    "convert": "Convert"
+  },
   "search": {
     "fields": {
       "name": {
         "label": "Song",
         "messages": {
-          "error": "Song must be defined",
+          "error-empty": "Song must be defined",
           "error-min": "Song must have more characters"
         }
       },
       "artist": {
         "label": "Artist",
         "messages": {
-          "error": "Artist must be defined",
+          "error-empty": "Artist must be defined",
           "error-min": "Artist must have more characters"
         }
       }
     },
     "submit": "Search"
+  },
+  "convert": {
+    "fields": {
+      "url": {
+        "label": "Song URL",
+        "messages": {
+          "error-invalid": "Song URL must be a valid URL"
+        }
+      }
+    },
+    "submit": "Convert"
   }
 }

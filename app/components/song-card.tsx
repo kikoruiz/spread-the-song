@@ -53,7 +53,7 @@ export default function SongCard({name, artist, album, service, url}: SongCardPr
         <Link
           title="Open"
           href={url}
-          className="flex self-end gap-1.5 w-fit items-center rounded-full p-3 px-4 bg-gradient-to-b from-white/90 to-white/45 drop-shadow-md font-bold text-lg transition-all hover:bg-white/60 hover:drop-shadow-xl"
+          className="flex self-end gap-1.5 w-fit items-center rounded-full p-3 px-4 bg-gradient-to-b from-white/90 to-white/45 drop-shadow-md font-bold text-lg transition-all duration-300 hover:bg-white/60 hover:drop-shadow-xl"
           target="_blank"
         >
           <ExternalLinkIcon className="size-6" /> Open in {service.name}
