@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@anatine/zod-mock": "3",
-    "@faker-js/faker": "8",
+    "@faker-js/faker": "9",
     "@types/spotify-web-api-node": "5"
   }
 }
