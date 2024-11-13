@@ -22,7 +22,7 @@
     "class-variance-authority": "0",
     "next": "15",
     "next-intl": "3",
-    "react": "19.0.0-rc-02c0e824-20241028",
+    "react": "19.0.0-rc.0",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
     "zod": "3"
   },
