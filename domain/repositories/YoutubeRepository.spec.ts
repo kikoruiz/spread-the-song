@@ -16,7 +16,7 @@ describe('YoutubeRepository', () => {
   test('returns data when searching a song with `name` and `artist` params', async () => {
     const mockedResponse = generateMock(SearchResponseSchema, {
       stringMap: {
-        channelTitle: () => 'Supersubmarina Canción de Guerra'
+        title: () => 'Supersubmarina Canción de Guerra'
       },
       seed: 1
     })
@@ -29,13 +29,13 @@ describe('YoutubeRepository', () => {
     })
 
     expect(song).toBeDefined()
-    expect(song?.artist.name).toBe('Supersubmarina Canción de Guerra')
+    expect(song?.name).toBe('Supersubmarina Canción de Guerra')
   })
 
   test("doesn't return data when searching a song with `name` and `artist` params", async () => {
     const mockedResponse = generateMock(SearchResponseSchema, {
       stringMap: {
-        channelTitle: () => 'Supersubmarina Canción de Guerra'
+        title: () => 'Supersubmarina Canción de Guerra'
       },
       seed: 1
     })
@@ -53,7 +53,8 @@ describe('YoutubeRepository', () => {
   test('returns data when retrieving a song by id', async () => {
     const mockedResponse = generateMock(VideosResponseSchema, {
       stringMap: {
-        id: () => '1234'
+        id: () => '1234',
+        title: () => 'Supersubmarina Canción de Guerra'
       },
       seed: 1
     })
@@ -63,6 +64,7 @@ describe('YoutubeRepository', () => {
     const song = await repository.getSong({id: '1234'})
 
     expect(song).toBeDefined()
+    expect(song?.name).toBe('Supersubmarina Canción de Guerra')
   })
 
   test("doesn't return data when retrieving a song by id", async () => {

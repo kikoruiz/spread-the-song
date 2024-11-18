@@ -38,6 +38,8 @@ export default class YoutubeRepository implements RemoteRepository {
     const song = items.find(({snippet: {title: rawTitle}}) => {
       const title = normalize(rawTitle)
 
+      console.log({title, name: normalize(name), artist: normalize(artist)})
+
       return title.includes(normalize(name)) && title.includes(normalize(artist))
     })
 
