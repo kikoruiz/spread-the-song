@@ -24,10 +24,12 @@ const styles = cva(
 
 interface SongCardProps extends Song, PropsWithChildren<VariantProps<typeof styles>> {}
 
-export default function SongCard({name, artist, album, service, url}: SongCardProps) {
+export default function SongCard({name, artist, album, service, url, type}: SongCardProps) {
   const {backgroundColor} = album.cover
   const style = {backgroundColor: backgroundColor ?? 'rgba(255,255,255,0.6)'}
   const Logo = socialLogos[service.id]
+  const isVideo = type === 'video'
+  const title = `${isVideo ? 'Watch' : 'Play'} in ${service.name}`
 
   return (
     <div className={styles({intent: service.id})}>
@@ -42,7 +44,7 @@ export default function SongCard({name, artist, album, service, url}: SongCardPr
               <div className="font-black text-3xl">{name}</div>
               <div className="font-medium">{artist.name}</div>
               <div className="font-light opacity-60">
-                {album.name} ({album.releaseYear})
+                {album.name} {album.releaseYear && `(${album.releaseYear})`}
               </div>
             </div>
           </div>
@@ -51,12 +53,14 @@ export default function SongCard({name, artist, album, service, url}: SongCardPr
         </div>
 
         <Link
-          title="Open"
+          title={title}
           href={url}
           className="flex self-end gap-1.5 w-fit items-center rounded-full p-3 px-4 bg-gradient-to-b from-white/90 to-white/45 drop-shadow-md font-bold text-lg transition-all duration-300 hover:bg-white/60 hover:drop-shadow-xl"
           target="_blank"
         >
-          <ExternalLinkIcon className="size-6" /> Open in {service.name}
+          <ExternalLinkIcon className="size-6" />
+
+          {title}
         </Link>
       </div>
     </div>

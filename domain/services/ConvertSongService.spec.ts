@@ -36,6 +36,16 @@ describe('ConvertSongService', () => {
     expect(songs.find(({service} = {} as Song) => service.id === 'spotify')).toBeUndefined()
   })
 
+  test('returns another list of songs when searching by `url`', async () => {
+    const songs = await convertSongService.execute({
+      url: 'https://www.youtube.com/watch?v=1234567890'
+    })
+
+    expect(songs).toBeDefined()
+    expect(songs.length).toBe(repositories.length - 1)
+    expect(songs.find(({service} = {} as Song) => service.id === 'youtube')).toBeUndefined()
+  })
+
   test("doesn't return a list of songs when searching by `url`", async () => {
     const songs = await convertSongService.execute({
       url: 'https://my.fake-service.com/1234567890'

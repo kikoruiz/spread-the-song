@@ -7,7 +7,7 @@ interface SongsListProps {
   songs?: SongsList
 }
 
-const DEFAULT_SKELETON_CARDS_COUNT = 2
+const DEFAULT_SKELETON_CARDS_COUNT = 4
 
 export default function SongsList({isPending, songs}: SongsListProps) {
   return (

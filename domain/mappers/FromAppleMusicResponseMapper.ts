@@ -1,4 +1,3 @@
-import {kebabCase} from 'change-case'
 import config from '../config'
 import Mapper from '../interfaces/Mapper'
 import {SongSchema, type Song} from '../schemas'
@@ -36,7 +35,7 @@ export default class FromAppleMusicResponseMapper extends Mapper {
   map({
     attributes: {url, name, durationInMillis, albumName, releaseDate, artistName, artwork}
   }: AppleMusicSong): Song | undefined {
-    const {NAME, MEDIA_TYPE} = this.#config
+    const {ID, NAME, MEDIA_TYPE} = this.#config
     const song = {
       album: {
         cover: this.#getCover(artwork),
@@ -49,7 +48,7 @@ export default class FromAppleMusicResponseMapper extends Mapper {
       duration: super.getDurationTime(durationInMillis),
       name,
       service: {
-        id: kebabCase(NAME),
+        id: ID,
         name: NAME
       },
       type: MEDIA_TYPE,

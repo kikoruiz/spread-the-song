@@ -14,8 +14,11 @@ export const SongSchema = z.object({
       backgroundColor: z.optional(ColorSchema),
       textColor: z.optional(ColorSchema)
     }),
-    name: z.string().trim(),
-    releaseYear: z.string().regex(/[0-9]{4}/)
+    name: z.string().trim().optional(),
+    releaseYear: z
+      .string()
+      .regex(/[0-9]{4}/)
+      .optional()
   }),
   artist: z.object({
     name: z.string().trim()
@@ -23,7 +26,8 @@ export const SongSchema = z.object({
   duration: z
     .string()
     .length(5)
-    .regex(/[0-9]{2}:[0-9]{2}/),
+    .regex(/[0-9]{2}:[0-9]{2}/)
+    .optional(),
   lyrics: z.optional(z.string()),
   name: z.string(),
   service: z.object({

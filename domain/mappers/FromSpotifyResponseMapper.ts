@@ -1,4 +1,3 @@
-import {kebabCase} from 'change-case'
 import config from '../config'
 import Mapper from '../interfaces/Mapper'
 import {SongSchema, type Song} from '../schemas'
@@ -34,7 +33,7 @@ export default class FromSpotifyResponseMapper extends Mapper {
     artists: [{name: artistName}],
     external_urls: {spotify: url}
   }: SpotifySong): Song | undefined {
-    const {NAME, MEDIA_TYPE} = this.#config
+    const {ID, NAME, MEDIA_TYPE} = this.#config
     const song = {
       album: {
         cover,
@@ -47,7 +46,7 @@ export default class FromSpotifyResponseMapper extends Mapper {
       duration: super.getDurationTime(duration),
       name,
       service: {
-        id: kebabCase(NAME),
+        id: ID,
         name: NAME
       },
       type: MEDIA_TYPE,

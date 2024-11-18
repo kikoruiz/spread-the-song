@@ -37,9 +37,9 @@ export default class ConvertSongService extends Service {
 
     if (!config) return EMPTY_SONGS_LIST
 
-    const {NAME, SONG_URL_PATTERN} = config as Config
+    const {ID, SONG_URL_PATTERN} = config as Config
     const {songId, songName, artistName} = url?.match(SONG_URL_PATTERN)?.groups ?? {}
-    const repository = remoteRepositories.find(repository => repository.constructor.name.includes(pascalCase(NAME)))
+    const repository = remoteRepositories.find(repository => repository.constructor.name.includes(pascalCase(ID)))
     const currentSong = await repository?.getSong({
       id: songId,
       name: songName,
@@ -56,7 +56,7 @@ export default class ConvertSongService extends Service {
     return this.#service.execute({
       name,
       artist,
-      exclude: kebabCase(NAME)
+      exclude: kebabCase(ID)
     })
   }
 }

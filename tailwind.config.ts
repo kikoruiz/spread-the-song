@@ -59,8 +59,8 @@ const config: Config = {
         'musixmatch-secondary': 'black',
         'spotify-primary': 'rgb(105,0,186)',
         'spotify-secondary': 'rgb(255,157,150)',
-        'youtube-primary': 'white',
-        'youtube-secondary': 'black',
+        'youtube-primary': '#ff0000',
+        'youtube-secondary': '#282828',
         'youtube-music-primary': 'white',
         'youtube-music-secondary': 'black'
       },
