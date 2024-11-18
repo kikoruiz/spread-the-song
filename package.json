@@ -22,8 +22,8 @@
     "class-variance-authority": "0",
     "next": "15",
     "next-intl": "3",
-    "react": "19.0.0-rc.0",
-    "react-dom": "19.0.0-rc.0",
+    "react": "19.0.0-rc.1",
+    "react-dom": "19.0.0-rc.1",
     "zod": "3"
   },
   "devDependencies": {
