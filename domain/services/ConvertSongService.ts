@@ -1,4 +1,4 @@
-import {kebabCase, pascalCase} from 'change-case'
+import {pascalCase} from 'change-case'
 import config from '../config'
 import Service from '../interfaces/Service'
 import SearchSongsService from './SearchSongsService'
@@ -56,7 +56,7 @@ export default class ConvertSongService extends Service {
     return this.#service.execute({
       name,
       artist,
-      exclude: kebabCase(ID)
+      exclude: ID
     })
   }
 }

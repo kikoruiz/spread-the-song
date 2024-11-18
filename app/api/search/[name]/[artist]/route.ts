@@ -24,7 +24,7 @@ export async function GET(request: Request, {params}: RequestProps) {
     return Response.json(data)
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(error.message as string)
+      throw new Error(error.message)
     }
   }
 }
