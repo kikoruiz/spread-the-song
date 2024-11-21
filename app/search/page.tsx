@@ -1,19 +1,20 @@
 'use client'
 
-import {useActionState, useEffect, useState} from 'react'
-import {searchSong} from '../lib/actions'
+import {useEffect, useState} from 'react'
 import type {SearchFieldErrors} from '../lib/schemas'
 import SearchForm from '../components/search-form'
 import SongsList from '../components/songs-list'
 import SongsListTitle from '../components/songs-list-title'
-import {useTransitions} from '../hooks/use-transitions'
+import useTransitionContext from '../hooks/use-transition'
+import useStateContext from '../hooks/use-state'
 
 export default function SearchPage() {
-  const {slideIntoViewport} = useTransitions()
-  const [songs, formAction, isPending] = useActionState(searchSong, undefined)
+  const {slideIntoViewport} = useTransitionContext()
+  const {searchState} = useStateContext()
+  const [{results}, formAction, isPending] = searchState
   const [errors, setErrors] = useState<SearchFieldErrors>()
-  const hasResponse = Array.isArray(songs)
-  const hasResults = hasResponse && songs.length > 0
+  const hasResponse = Array.isArray(results)
+  const hasResults = hasResponse && results.length > 0
 
   useEffect(() => {
     slideIntoViewport()
@@ -28,9 +29,9 @@ export default function SearchPage() {
       <SearchForm action={formAction} errors={errors} hasResults={hasResults} onError={handleError} />
 
       <div className="container max-w-6xl flex flex-col gap-12 py-12 px-6">
-        {(hasResponse || isPending) && <SongsListTitle isPending={isPending} results={songs} />}
+        {(hasResponse || isPending) && <SongsListTitle isPending={isPending} results={results} />}
 
-        <SongsList isPending={isPending} songs={songs} />
+        <SongsList isPending={isPending} songs={results} />
       </div>
     </div>
   )

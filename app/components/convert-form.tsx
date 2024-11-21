@@ -1,10 +1,10 @@
 import {useEffect, useRef, useState, type FormEvent} from 'react'
 import {useTranslations} from 'next-intl'
-import {convertSchema, type ConvertFieldErrors} from '@/app/lib/schemas'
+import {ConvertParamsSchema, type ConvertParams} from '@/domain/schemas'
+import {type ConvertFieldErrors} from '@/app/lib/schemas'
 import {Root, Submit} from '@radix-ui/react-form'
 import {ArrowRightIcon} from '@radix-ui/react-icons'
 import FormField from './form-field'
-import type {ConvertParams} from '@/domain'
 
 interface ConvertFormProps {
   action: (payload: FormData) => void
@@ -13,7 +13,7 @@ interface ConvertFormProps {
   onError: (errors?: ConvertFieldErrors) => void
 }
 
-const convertFields = convertSchema.keyof().options
+const convertFields = ConvertParamsSchema.keyof().options
 
 export default function ConvertForm({action, errors, hasResults, onError}: ConvertFormProps) {
   const t = useTranslations('convert')
@@ -26,7 +26,7 @@ export default function ConvertForm({action, errors, hasResults, onError}: Conve
       (params, field) => ({...params, [field]: Object.fromEntries(formData)[field]}),
       {} as ConvertParams
     )
-    const {error} = convertSchema.safeParse(params)
+    const {error} = ConvertParamsSchema.safeParse(params)
 
     setParams(params)
     if (error) {

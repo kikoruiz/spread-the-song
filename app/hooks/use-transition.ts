@@ -1,7 +1,10 @@
 'use client'
 
 import {useContext} from 'react'
-import TransitionContext, {type Animation} from '@/app/contexts/transition-context'
+import TransitionContext, {
+  type Animation,
+  type TransitionContext as TransitionContextInterface
+} from '@/app/contexts/transition-context'
 
 const ANIMATION_DURATION = 300
 
@@ -13,7 +16,7 @@ function getInAnimation(animation: Animation) {
   return animation === 'slide-left' ? 'animate-slide-left-in' : 'animate-slide-right-in'
 }
 
-function animate(animation: Animation, context: TransitionContext) {
+function animate(animation: Animation, context: TransitionContextInterface) {
   return new Promise(resolve => {
     const className = getOutAnimation(animation)
 
@@ -24,7 +27,7 @@ function animate(animation: Animation, context: TransitionContext) {
   })
 }
 
-export function useTransitions() {
+export default function useTransitions() {
   const transitionContext = useContext(TransitionContext)
 
   if (!transitionContext) {

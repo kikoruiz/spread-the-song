@@ -1,10 +1,10 @@
 import {useEffect, useRef, useState, type FormEvent} from 'react'
 import {useTranslations} from 'next-intl'
-import {searchSchema, type SearchFieldErrors} from '@/app/lib/schemas'
+import {SearchParamsSchema, type SearchParams} from '@/domain/schemas'
+import {type SearchFieldErrors} from '@/app/lib/schemas'
 import {Root, Submit} from '@radix-ui/react-form'
 import {ArrowRightIcon} from '@radix-ui/react-icons'
 import FormField from './form-field'
-import type {SearchParams} from '@/domain'
 
 interface SearchFormProps {
   action: (payload: FormData) => void
@@ -13,7 +13,7 @@ interface SearchFormProps {
   onError: (errors?: SearchFieldErrors) => void
 }
 
-const searchFields = searchSchema.keyof().options
+const searchFields = SearchParamsSchema.keyof().options
 
 export default function SearchForm({action, errors, hasResults, onError}: SearchFormProps) {
   const t = useTranslations('search')
@@ -26,7 +26,7 @@ export default function SearchForm({action, errors, hasResults, onError}: Search
       (params, field) => ({...params, [field]: Object.fromEntries(formData)[field]}),
       {} as SearchParams
     )
-    const {error} = searchSchema.safeParse(params)
+    const {error} = SearchParamsSchema.safeParse(params)
 
     setParams(params)
     if (error) {

@@ -1,7 +1,8 @@
-import z from 'zod'
+import {z} from 'zod'
 
 const MUSIC_SERVICES = ['apple-music', 'musixmatch', 'spotify', 'youtube', 'youtube-music'] as const
 const SONG_TYPES = ['audio', 'video', 'lyrics'] as const
+const DEFAULT_MIN_CHARACTERS = 2
 
 const ColorSchema = z.string().length(7)
 
@@ -40,9 +41,11 @@ export const SongSchema = z.object({
 
 export const SongsListSchema = z.array(SongSchema)
 
+const inputSchema = z.string().min(1, {message: 'error-empty'}).min(DEFAULT_MIN_CHARACTERS, {message: 'error-min'})
+
 export const SearchParamsSchema = z.object({
-  name: z.string(),
-  artist: z.string()
+  name: inputSchema,
+  artist: inputSchema
 })
 
 export const GetParamsSchema = z
@@ -51,7 +54,7 @@ export const GetParamsSchema = z
   })
   .merge(SearchParamsSchema.partial())
 
-export const ConvertParamsSchema = z.object({url: z.string().url()})
+export const ConvertParamsSchema = z.object({url: z.string().url({message: 'error-invalid'})})
 
 export type Song = z.infer<typeof SongSchema>
 export type SongsList = z.infer<typeof SongsListSchema>

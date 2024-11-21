@@ -3,7 +3,7 @@
 import {useEffect, useRef, useState} from 'react'
 import {useRouter, usePathname} from 'next/navigation'
 import {useTranslations} from 'next-intl'
-import {useTransitions} from '../hooks/use-transitions'
+import useTransitionContext from '../hooks/use-transition'
 
 const SECTIONS = ['search', 'convert']
 
@@ -11,7 +11,7 @@ export default function Navigation() {
   const t = useTranslations('sections')
   const {push} = useRouter()
   const pathname = usePathname()
-  const {slideLeft, slideRight} = useTransitions()
+  const {slideLeft, slideRight} = useTransitionContext()
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([])
   const defaultTabIndex = SECTIONS.findIndex(section => pathname.includes(section))
   const [activeTabIndex, setActiveTabIndex] = useState<number>(defaultTabIndex)

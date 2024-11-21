@@ -1,19 +1,19 @@
 'use server'
 
-import {convertSchema, searchSchema} from './schemas'
-import type {ConvertParams, SearchParams, SongsList} from '@/domain'
+import {ConvertParamsSchema, SearchParamsSchema, type ConvertParams, type SearchParams} from '@/domain'
+import type {ConvertState, SearchState} from '../contexts/state-context'
 import {convert, search} from './http'
 
-export async function searchSong(state: SongsList | undefined, formData: FormData) {
-  const params = searchSchema.parse(Object.fromEntries(formData))
-  const songsList = await search(params as SearchParams)
+export async function searchSong(state: SearchState, formData: FormData) {
+  const params = SearchParamsSchema.parse(Object.fromEntries(formData))
+  const results = await search(params as SearchParams)
 
-  return songsList
+  return {params, results}
 }
 
-export async function convertSong(state: SongsList | undefined, formData: FormData) {
-  const params = convertSchema.parse(Object.fromEntries(formData))
-  const songsList = await convert(params as ConvertParams)
+export async function convertSong(state: ConvertState, formData: FormData) {
+  const params = ConvertParamsSchema.parse(Object.fromEntries(formData))
+  const results = await convert(params as ConvertParams)
 
-  return songsList
+  return {params, results}
 }
