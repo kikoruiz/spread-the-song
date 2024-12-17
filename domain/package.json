@@ -14,7 +14,7 @@
     "jose": "5",
     "musicmatch": "0",
     "spotify-web-api-node": "5",
-    "youtube-music-api": "1"
+    "ytmusic-api": "5"
   },
   "devDependencies": {
     "@anatine/zod-mock": "3",
