@@ -10,7 +10,7 @@ export async function GET(request: Request, {params}: RequestProps) {
   const {url: requestURL} = request
   const [, path] = requestURL.split('api')
   const key = getKey(path)
-  const cachedData: SongsList = storage.get(key)
+  const cachedData = storage.get(key) as SongsList
 
   if (cachedData) {
     return Response.json(cachedData)
