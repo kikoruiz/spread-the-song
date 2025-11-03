@@ -11,7 +11,7 @@
   "dependencies": {
     "change-case": "5",
     "googleapis": "144",
-    "jose": "5",
+    "jose": "6",
     "musicmatch": "0",
     "spotify-web-api-node": "5",
     "ytmusic-api": "5"
